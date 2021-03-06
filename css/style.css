@@ -4,12 +4,23 @@ html, body
     font-family: Arial;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .logo{
-    margin-left: 40px;
-    margin-top: 30px;
+    
     height: 150px;
     width: 150px;
+    margin: auto;
     
+}
+
+
+.navigation-menu{
+    display: inline-flex;
+    width: 100%;
+   
 }
 
 
@@ -17,19 +28,13 @@ body
 {
     margin: 0;
     background-color: #292929;
-    overflow: hidden;
+    
 }
-
+/*NAVIGATION BAR*/
 nav
 {
-    position: absolute;
-    top: 8%;
-    right: 0;
-    left: 60%;
-    width: 500px;
-    display: table;
-    margin: 0 auto;
-    transform: translateY(-50%);
+    margin: auto;
+ 
 }
 
 nav a
@@ -101,17 +106,6 @@ nav a:nth-child(3):after
     background-color: palevioletred;
 }
 
-#indicator
-{
-    position: absolute;
-    left: 5%;
-    bottom: 0;
-    width: 30px;
-    height: 3px;
-    background-color: #fff;
-    border-radius: 5px;
-    transition: 0.2s ease left;
-}
 
 nav a:hover
 {
@@ -123,46 +117,75 @@ nav a:hover:before, nav a:hover:after
     transform: scale(1);
 }
 
-nav a:nth-child(1):hover ~ #indicator
-{
-    background: linear-gradient(130deg, yellow, red);
-}
-
-nav a:nth-child(2):hover ~ #indicator
-{
-    left: 34%;
-    background: linear-gradient(130deg, #00e2ff, #89ff00);
-}
-
-nav a:nth-child(3):hover ~ #indicator
-{
-    left: 70%;
-    background: linear-gradient(130deg, purple, palevioletred);
-}
-
-#ytd-url {
-  display: block;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  padding: 10px 14px;
-  margin: 20px;
-  color: #fff;
-  font-family: Arial;
-  font-size: 14px;
-  text-decoration: none;
-  background-color: #000;
-  border-radius: 4px;
-  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
-  z-index: 125;
-}
+/*END NAVIGATION BAR*/
 
 footer{
+  
+  bottom: 0;
   text-align: center;
   padding: 3px;
   background-color: darkred;
   color: white;
-  margin-left: 82px;
   margin-right: 82px;
+  margin-left: 82px;
+  
+}
+
+
+.SpecialAD{
+    border: 5px solid #8B0000;
+    height: 100%;
+    width: 99%;
+}
+
+.Ad{
+    height: 200px;
+    width: 200px;
+}
+
+.advertisement{
+    text-align: center;
+    color: white;
+    padding-top: 70px;
     
+}
+
+.Bold{
+    color: darkred;
+}
+
+p {
+  font-family: Georgia, serif;
+  background: #949494;
+  border-radius: 6px;
+  color: #292929;
+  display: block;
+  font-size: 18px;
+  padding: 24px 15px;
+  text-align: center;
+}
+p:hover {
+  background: #fff;
+  border-radius: 10%;
+    
+    
+
+}
+
+section {
+  float: left;
+  width: 30%;
+  margin: 0 1.5% 24px 1.5%;
+}
+
+.topic{
+    text-align: center;
+    color: #fff;
+}
+
+hr{
+    text-align: center;
+    border: 10px solid darkred;
+    border-radius: 5px;
+    width: 70%;
 }

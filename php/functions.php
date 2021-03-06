@@ -41,7 +41,7 @@ function createPageHeder($TitleName)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link css file to this function -->
     <link rel="stylesheet" href="<?php echo FILE_CSS_FUNCTION; ?>"/> 
-    <?php CreateLogo(); ?>
+    <?php  ?>
     <html>
         <head>
             <meta charset="UTF-8">
