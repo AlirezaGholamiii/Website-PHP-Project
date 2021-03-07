@@ -3,6 +3,7 @@
         #Revision history 
         #2021-03-04      Alireza Gholami     adding created function Header/footer/navigation
         #2021-03-05      Alireza Gholami     adding Ad part/site description/adding css for all new part
+        #2021-03-06      Alireza Gholami     adding some comments
         
         
         
@@ -34,9 +35,10 @@
                 ?>
             </div >
         <?php
-        #Randomize the picture to show
+        #Randomize the picture to show(Create an arrary to store all the add)
         $Advertising = array(FILE_Ad1_FUNCTION, FILE_Ad2_FUNCTION, FILE_Ad3_FUNCTION,FILE_Ad4_FUNCTION,FILE_Ad5_FUNCTION);
-        $randomImage = $Advertising[array_rand($Advertising)]; // See comments
+        #Create a variable to get advertising array and show it randomly
+        $randomImage = $Advertising[array_rand($Advertising)]; 
         ?>
         
         <!-- This is a short description of the website -->
@@ -61,20 +63,27 @@
                 </p>
             </section>
         </div><br>
-        <hr>
-        <!-- showing advertising -->
+        <hr class="spliter">
+        <!-- After descripthion here i will show advertising showing advertising -->
         <div class="advertisement">
              
             <h3>Advertising</h3>
 
             <?php
+                #if the Selected photo is the Ad2 then it will change the style of advertising
                 if($randomImage == FILE_Ad2_FUNCTION)
                 {
-                    ?> <a href="https://www.pinterest.com/pin/57209857755222025/"> <img class="SpecialAD" src="<?php echo $randomImage; ?>" alt="Ad"/> </a><?php
+                    ?> 
+                        <a href="https://www.pinterest.com/pin/57209857755222025/"> 
+                        <img class="SpecialAD" src="<?php echo $randomImage; ?>" alt="Ad"/> </a>
+                    <?php
                 }
-                else
+                else #else advertising will show in normal style with normal size
                 {
-                    ?> <a href="https://www.amazon.ca/Stretch-Universal-Australian-Sheepskin-35cm-44cm/dp/B07HG7NH9J/ref=bmx_7?pd_rd_w=8sqIs&pf_rd_p=8af304ab-1485-4db5-b3be-498075a005a9&pf_rd_r=1R745BF2XFFKGBG81ZZM&pd_rd_r=ce2b067c-b73e-4059-95ee-251b540c26e6&pd_rd_wg=bk0r5&pd_rd_i=B07HG7NH9J&psc=1"> <img class="Ad"  src="<?php echo $randomImage; ?>" alt="Ad"/></a><?php
+                    ?> 
+                        <a href="https://www.amazon.ca/Stretch-Universal-Australian-Sheepskin-35cm-44cm/dp/B07HG7NH9J/ref=bmx_7?pd_rd_w=8sqIs&pf_rd_p=8af304ab-1485-4db5-b3be-498075a005a9&pf_rd_r=1R745BF2XFFKGBG81ZZM&pd_rd_r=ce2b067c-b73e-4059-95ee-251b540c26e6&pd_rd_wg=bk0r5&pd_rd_i=B07HG7NH9J&psc=1"> 
+                        <img class="Ad"  src="<?php echo $randomImage; ?>" alt="Ad"/></a>
+                    <?php
                 }
             ?>
         </div>

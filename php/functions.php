@@ -4,8 +4,7 @@
 #2021-03-04      Alireza Gholami     Create function Header/footer/logo/navigation
 
 #declare content
-define("MAKE_MAX_LENGHT", 10);
-define("MODEL_MAX_LENGHT", 15);
+
 
 
 
@@ -26,9 +25,7 @@ define("BUYING_PAGE_PATH", "buying-page.php");
 
 
 /////////////////////////////// ALL FUNCTIONS ///////////////////////////////////////
-//
-//
-//
+
 
 
 #create a function for all pages header
@@ -37,17 +34,17 @@ function createPageHeder($TitleName)
  
     ?><!DOCTYPE html>
     
-    <!-- provide structured metadata about a Web page -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link css file to this function -->
-    <link rel="stylesheet" href="<?php echo FILE_CSS_FUNCTION; ?>"/> 
+        <!-- provide structured metadata about a Web page -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Link css file to this function -->
+        <link rel="stylesheet" href="<?php echo FILE_CSS_FUNCTION; ?>"/> 
     <?php  ?>
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <title><?php echo $TitleName ?></title>
-        </head>
-        <body class="color">
+        <html>
+            <head>
+                <meta charset="UTF-8">
+                <title><?php echo $TitleName ?></title>
+            </head>
+            <body class="color">
        
             
     <?php    

@@ -182,10 +182,133 @@ section {
     text-align: center;
     color: #fff;
 }
-
-hr{
+.spliter{
     text-align: center;
     border: 10px solid darkred;
     border-radius: 5px;
     width: 70%;
+}
+
+.error{
+    font-size: 18px;
+    color:red;
+}
+
+.description{
+    padding-top: 80px;
+}
+
+
+/*///////////////////////////form*/
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: darkred;
+  color: white;
+  padding: 20px 38px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: red;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 25px;
+  width: 40%;
+  
+  margin: auto;
+  margin-bottom: 25px;
+  
+}
+
+.comment{
+    height: 200px;
+}
+
+.top-message{
+    text-align: center;
+    color: whitesmoke;
+}
+
+.requierd{
+    color: red;
+}
+
+.star{
+    color: red;
+    font-size: 24px;
+}
+
+.hr-form{
+    border: 2px solid darkred;
+    border-radius: 5px;
+    margin-bottom: 35px;
+}
+
+
+/*/////////////////////////////////button succeed page*/
+
+.button {
+ 
+  border-radius: 4px;
+  background-color: darkred;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+  width: 300px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.button span {
+  cursor: pointer;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  margin: auto;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.back-button{
+ text-align: center;
+  padding-top: 25px;
+  padding-bottom: 200px;
+
+}
+
+.message{
+    padding-top: 100px;
 }
