@@ -1,12 +1,15 @@
 <?php
 #Revision history 
 #2021-03-06      Alireza Gholami     Creating This page/ adding all the form html / all the validation for the form
-# ==> To continue on this file ==> converting the final validation to jason string and save data into the text file.
+#2021-03-07      Alireza Gholami     Finalize calculation part / saving form data to txt file / testing new part / debuging text file
 
       
     #declere constant
     define("FOLDER_PHP_FUNCTIONS", 'php/');
     define("FILE_PHP_FUNCTION", FOLDER_PHP_FUNCTIONS . "functions.php");
+    #declare new path for txt file
+    define("FOLDER_DATA" , 'data/');
+    define("FILE_DATA_purchases", FOLDER_DATA . 'purchases.txt');
 
     #import the php commin function file
     require_once (FILE_PHP_FUNCTION);
@@ -24,6 +27,7 @@
     define("QUANT_MAX_LENGHT",99);
     #Local tax amount
     define("LOCAL_TAX", 12.05);
+    
     
     
     #creating variable to store errors 
@@ -199,13 +203,19 @@
             #Calculating of transaction price with tax
             $subtotal = $price * $quantity;
             $taxPercentage = LOCAL_TAX / 100;
-            $taxAmount = $taxPercentage * $subtotal;
+            $taxAmount = (float) number_format($taxPercentage * $subtotal , 2);
             $grandTotal = $subtotal + $taxAmount;
             $FinalPrice = (float) number_format($grandTotal , 2);
             
             #Create an array and store all the data in the array
-            $array = array($product, $fname, $lname, $city, $quantity, $comments, $subtotal, $taxAmount, $FinalPrice);
+            $array = array($product, $fname, $lname, $city, $price ,$quantity, $comments, $subtotal, $taxAmount, $FinalPrice);
             
+            #convert array into jason
+            $js = json_encode($array);
+            
+            #save json array into the text file
+            file_put_contents(FILE_DATA_purchases , $js . "\n", FILE_APPEND);
+          
             #send the user to succeed page 
             header('Location: succeed.php');
             die();
