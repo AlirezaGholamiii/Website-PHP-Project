@@ -2,6 +2,7 @@
 #Revision history 
 #2021-03-06      Alireza Gholami     Creating This page/ adding all the form html / all the validation for the form
 #2021-03-07      Alireza Gholami     Finalize calculation part / saving form data to txt file / testing new part / debuging text file
+#2021-03-08      Alireza Gholami     Debuging the round number of tax and grand total
 
       
     #declere constant
@@ -203,9 +204,9 @@
             #Calculating of transaction price with tax
             $subtotal = $price * $quantity;
             $taxPercentage = LOCAL_TAX / 100;
-            $taxAmount = (float) number_format($taxPercentage * $subtotal , 2);
+            $taxAmount = number_format($taxPercentage * $subtotal, 2) ;
             $grandTotal = $subtotal + $taxAmount;
-            $FinalPrice = (float) number_format($grandTotal , 2);
+            $FinalPrice = number_format($grandTotal , 2);
             
             #Create an array and store all the data in the array
             $array = array($product, $fname, $lname, $city, $price ,$quantity, $comments, $subtotal, $taxAmount, $FinalPrice);
