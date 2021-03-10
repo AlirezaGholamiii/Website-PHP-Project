@@ -14,9 +14,11 @@
 
     //set_error_handler("manageError");
     //set_exception_handler("manageExceptions");
-
+        
         createPageHeder("Orders Page");
+
     ?>
+
         <div class="navigation-menu">
             <?php
                 CreateLogo();
@@ -63,11 +65,23 @@
                         #create a loop to retrieve data in each cell
                         foreach ((array)$array as $value) 
                         {
-                            # craete a new column
+                            if($array[1])
+                            {
+                                   # craete a new column
+                            echo "<td >";
+                                #display the value that will process by loop
+                                echo $value . " $";
+                            echo "</td>";
+                            }
+                            else 
+                            {
+                                # craete a new column
                             echo "<td>";
                                 #display the value that will process by loop
                                 echo $value;
                             echo "</td>";
+                            }
+                            
 
                         }
                     echo "</tr>";
@@ -84,8 +98,9 @@
                 ?>"<h2 class="top-message" >Canot Open the file because it does not exist!</h2>" <?php
             }
     ?>
-        </div>
+            </div>
     <?php
         #create the page footer
         createPageFooter();
+
 

@@ -21,6 +21,7 @@ define("HOME_PAGE_PATH", "index.php");
 define("ORDERS_PAGE_PATH", "orders-page.php");
 define("BUYING_PAGE_PATH", "buying-page.php");
 
+#global variable
 
 
 
@@ -30,21 +31,22 @@ define("BUYING_PAGE_PATH", "buying-page.php");
 
 #create a function for all pages header
 function createPageHeder($TitleName)
-{
+{global $Changer;
  
     ?><!DOCTYPE html>
     
         <!-- provide structured metadata about a Web page -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Link css file to this function -->
-        <link rel="stylesheet" href="<?php echo FILE_CSS_FUNCTION; ?>"/> 
-    <?php  ?>
-        <html>
+        <link rel="stylesheet" href="<?php echo FILE_CSS_FUNCTION; ?>"/>
+        
+    <?php changeColor() ?>
+        <html >
             <head>
                 <meta charset="UTF-8">
                 <title><?php echo $TitleName ?></title>
             </head>
-            <body class="color">
+            <body class="<?php echo $Changer; ?>" >
        
             
     <?php    
@@ -92,4 +94,33 @@ function createPageFooter()
     
     <?php    
   
+}
+
+
+function changeColor()
+{
+            if(isset($_GET["command"]))
+            {
+                $Changer = htmlspecialchars($_GET["command"]);
+        
+                if($Changer == "print")
+                {
+                    $Changer="text-print";
+                }
+                else 
+                {
+                    if($Changer == "color")
+                    {
+                        $Changer = "text-color";
+                    }
+                    else
+                    {
+                         #default value
+                        $Changer = "text-default";
+                    }
+                }
+            }
+    
+        ?>
+      <?php
 }

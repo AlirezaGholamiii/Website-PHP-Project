@@ -339,3 +339,16 @@ td{
     border-left: 2px solid darkred;
     padding: 10px;
 }
+
+.text-print{
+    background-color: white;
+}
+
+.text-color{
+    background-color: red;
+}
+
+.text-default{
+    background-color: yellow;
+}
+
