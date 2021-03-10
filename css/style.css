@@ -312,3 +312,30 @@ input[type=submit]:hover {
 .message{
     padding-top: 100px;
 }
+
+/*////////////////////////////TABLE*/
+
+table{
+    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+    margin: auto;
+    margin-bottom: 70px;
+    margin-top: 30px;
+    border-right: 2px solid darkred;
+    border-top: 2px solid darkred;
+}
+
+tr{
+    color: #292929;
+    border: 2px solid darkred;
+    
+}
+
+td{
+    border-bottom: 2px solid darkred;
+    border-left: 2px solid darkred;
+    padding: 10px;
+}
