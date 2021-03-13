@@ -1,7 +1,10 @@
 <?php
 #Revision history 
 #2021-03-06      Alireza Gholami     Creating This page
-#2021-03-08      Alireza Gholami     table created(HTML/PHP/CSS) / Read from file tested/      
+#2021-03-08      Alireza Gholami     table created(HTML/PHP/CSS) / Read from file tested/
+#2021-03-13      Alireza Gholami     adding Error handeler
+
+    
     #declere constant
     define("FOLDER_PHP_FUNCTIONS", 'php/');
     define("FILE_PHP_FUNCTION", FOLDER_PHP_FUNCTIONS . "functions.php");
@@ -12,8 +15,9 @@
     #import the php commin function file
     require_once (FILE_PHP_FUNCTION);
 
-    //set_error_handler("manageError");
-    //set_exception_handler("manageExceptions");
+    #creating Error and excepthion handeler to avoidng display server side problems to end users.
+    set_error_handler("manageError");
+    set_exception_handler("manageExceptions");
         
         createPageHeder("Orders Page");
 
@@ -33,7 +37,7 @@
             if(file_exists(FILE_DATA_purchases))
             {
                 #read all file with one step
-                $purchases = fopen(FILE_DATA_purchases , "r") or exit("The file could not be open");
+               /* $purchases = fopen(FILE_DATA_purchases , "r") or exit("The file could not be open");
                 
                 #Enterung PHP to create first part of the table
                 ?>  
@@ -91,11 +95,17 @@
                 echo "</table>";
                 echo "</div>";
                 #close the text file
-                fclose($purchases);
+                fclose($purchases);*/
+                
+                echo "<td >";
+                                #display the value that will process by loop
+                                echo $value . " $";
+                            echo "</td>";
+               
             }
             else #show the message if there is no any text file in this directory
             {
-                ?>"<h2 class="top-message" >Canot Open the file because it does not exist!</h2>" <?php
+                ?>"<h2 class="top-message" >Cannot Open the file because it does not exist!</h2>" <?php
             }
     ?>
             </div>

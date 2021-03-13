@@ -3,8 +3,9 @@
 #2021-03-06      Alireza Gholami     Creating This page/ adding all the form html / all the validation for the form
 #2021-03-07      Alireza Gholami     Finalize calculation part / saving form data to txt file / testing new part / debuging text file
 #2021-03-08      Alireza Gholami     Debuging the round number of tax and grand total
+#2021-03-13      Alireza Gholami     adding Error handeler
 
-      
+    
     #declere constant
     define("FOLDER_PHP_FUNCTIONS", 'php/');
     define("FILE_PHP_FUNCTION", FOLDER_PHP_FUNCTIONS . "functions.php");
@@ -15,6 +16,9 @@
     #import the php commin function file
     require_once (FILE_PHP_FUNCTION);
     
+    #creating Error and excepthion handeler to avoidng display server side problems to end users.
+    set_error_handler("manageError");
+    set_exception_handler("manageExceptions"); 
     
     #declare content
     define("product_MAX_LENGHT", 12);
@@ -68,7 +72,10 @@
         </div >
     <?php
 
-
+echo "<td >";
+                                #display the value that will process by loop
+                                echo $value . " $";
+                            echo "</td>";
   
     
     #check if the save button has been clicked

@@ -2,6 +2,7 @@
 
 #Revision history 
 #2021-03-04      Alireza Gholami     Create function Header/footer/logo/navigation
+#2021-03-13      Alireza Gholami     Create function manageError/manageExceptions/get_browser_name
 
 #declare content
 
@@ -21,7 +22,12 @@ define("HOME_PAGE_PATH", "index.php");
 define("ORDERS_PAGE_PATH", "orders-page.php");
 define("BUYING_PAGE_PATH", "buying-page.php");
 
-#global variable
+#declare new path for log txt file
+define("FOLDER_LOG" , 'log/');
+define("FILE_LOG", FOLDER_LOG . 'WebsiteLog.txt');
+
+#create a variable to turn off and on the developer mode
+$debug=true;
 
 
 
@@ -124,3 +130,62 @@ function changeColor()
         ?>
       <?php
 }
+
+
+function manageError($errorNumber, $errorString, $errorFile, $errorLine)
+{
+    
+    
+    #generic message for end-user
+    echo "1-KasraaAn error occured on the website. Please counsult the log for more details";
+    
+    #detaild info for the developers (dont use echo)
+    #save this into the file insted of using echo
+    if($debug = false)
+    {
+    echo "2-KasraaAn error occured in the file" . $errorFile . "on line" . $errorLine 
+            . " Error: $errorNumber - $errorString";
+    }
+    else
+    {
+        #save the same info in the file
+        #Create an array and store all the data in the array
+        $browserName = get_browser_name($_SERVER['HTTP_USER_AGENT']);         
+        $date = DateTime::createFromFormat('U.u', microtime(TRUE));
+        $dateTime = $date->format('Y-m-d H:i:s.u');
+            $array = "Error Name : " . $errorString . " ,Error Code : " . $errorNumber . " ,Time : " . $dateTime 
+                    ." ,File Name : " . $errorFile . " ,Line Number : " . $errorLine . " ,Browser Name : " . $browserName;
+            
+            #convert array into jason
+            $js = json_encode($array);
+            
+            #save json array into the text file
+            file_put_contents(FILE_LOG , $js . "\n", FILE_APPEND);
+    }
+            die();
+}
+
+function manageExceptions($error)
+{
+    #generic message for end-user
+    echo "\n3-KasraaAn exception occured on the website. Please consult the log for more details";
+    
+    #detailed info for developers (dont use echo)
+    echo "4-KasraaAn error occured in the file " . $error->getFile() . " On Line " .
+            $error->getLine() . " Error" . $error->getMessage();
+    
+            die();
+}
+
+function get_browser_name($user_agent)
+{
+    if (strpos($user_agent, 'Opera')) return 'Opera';
+    elseif (strpos($user_agent, 'Edge')) return 'Edge';
+    elseif (strpos($user_agent, 'Chrome')) return 'Chrome';
+    elseif (strpos($user_agent, 'Safari')) return 'Safari';
+    elseif (strpos($user_agent, 'Firefox')) return 'Firefox';
+    elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
+   
+    return 'Other';
+}
+

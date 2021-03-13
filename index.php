@@ -4,6 +4,7 @@
         #2021-03-04      Alireza Gholami     adding created function Header/footer/navigation
         #2021-03-05      Alireza Gholami     adding Ad part/site description/adding css for all new part
         #2021-03-06      Alireza Gholami     adding some comments
+        #2021-03-13      Alireza Gholami     adding Error handeler
         
         
         
@@ -23,8 +24,9 @@
         #import the php commin function file
         require_once (FILE_PHP_FUNCTION);
 
-        //set_error_handler("manageError");
-        //set_exception_handler("manageExceptions");
+        #creating Error and excepthion handeler to avoidng display server side problems to end users.
+        set_error_handler("manageError");
+        set_exception_handler("manageExceptions");
 
         createPageHeder("Home Page");
         ?>
@@ -84,6 +86,10 @@
                         <a href="https://www.amazon.ca/Stretch-Universal-Australian-Sheepskin-35cm-44cm/dp/B07HG7NH9J/ref=bmx_7?pd_rd_w=8sqIs&pf_rd_p=8af304ab-1485-4db5-b3be-498075a005a9&pf_rd_r=1R745BF2XFFKGBG81ZZM&pd_rd_r=ce2b067c-b73e-4059-95ee-251b540c26e6&pd_rd_wg=bk0r5&pd_rd_i=B07HG7NH9J&psc=1"> 
                         <img class="Ad"  src="<?php echo $randomImage; ?>" alt="Ad"/></a>
                     <?php
+                    echo "<td >";
+                                #display the value that will process by loop
+                                echo $value . " $";
+                            echo "</td>";
                 }
             ?>
         </div>
