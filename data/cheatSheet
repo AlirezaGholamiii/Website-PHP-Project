@@ -1,0 +1,67 @@
+strlen($variable)                                       For the number of charachter in the variable
+
+mb_strlrn($variable)                                    ignore the accesents
+
+substr (string, strat, stop)                            to get part of a string
+
+trim($var)						to remove spaces
+
+strpos($variable, 'string') 				to find an specific string in a long string
+
+str_replace(search, replace, complete-string)
+
+array = explode(" ", $string) 				take an string and convert it to array
+
+var_dump($array) 					to get all the information about a string
+
+$newString = implode(" " , $string) 			convert array to string again.
+
+gettype($variable) 					show the type of var
+
+is_numeric() 						to check its number or not
+
+is_float()                                              to check its float
+
+array("string" => "NewString" , "string" => "NewString") to find a word and change it t new one
+
+sort							to sorte indexed array
+
+rsort							to sort array reverse alphabetical order
+
+asort							to sort assosiative array with value
+
+arsort							to sort assosiative array value reverse
+
+ksort							to sort assosiative array with key
+
+krsort							to sort assosiative array with key reverse
+
+$array[1]						edit element 1 in array
+
+$array[]						add new element in array
+
+array_push($arrayName, "string" , "string")		to replace an item in array
+
+array_pop($arrayName)					remove last element
+
+array_shift($arrayName)					remove first element
+
+unset($array[0])					remove this index
+
+unset($array["Bill"])					remove this 
+
+json_encode($myarry);					to convert an array to string
+
+$myObject = new DateTime($userDate);			just save the date in data base
+
+$MYoBJECT2 = date_create("now");			echo time of now
+
+strtotime($userDate)					for compairing dates and validation
+
+$birthdateTime ->format('Y-m-d H:i:s')			to set a format for a date
+
+var_dump(checkdate(2, 3, 2001));			checkdate, validate a gregorian date return rue or false
+
+$dateArray = getdate()					place the date into an array
+
+It took %s.%F second to loop 10 000 times		to see the time app takes

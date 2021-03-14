@@ -1,0 +1,5 @@
+{"product":"Product","fname":"Alireza","lname":"Gholami","city":"Montreal","price":"10000","quantity":"1","comments":"First, buy!","subtotal":10000,"taxAmount":1205,"FinalPrice":"11,205.00"}
+{"product":"Product1236","fname":"Mahan","lname":"Moulaei","city":"Montreal","price":"555","quantity":"90","comments":"Massive purchase!","subtotal":49950,"taxAmount":6018.975,"FinalPrice":"55,968.98"}
+{"product":"P1496","fname":"Kimia","lname":"Gholami","city":"NewYork","price":"169.5","quantity":"1","comments":"Delivery by Canada Post!","subtotal":169.5,"taxAmount":20.424750000000003,"FinalPrice":"189.92"}
+{"product":"p1263","fname":"Maryam","lname":"Azbahani","city":"LA","price":"2","quantity":"23","comments":"Thanks.","subtotal":46,"taxAmount":5.543,"FinalPrice":"51.54"}
+{"product":"Product5","fname":"Mojtaba","lname":"Gholami","city":"CA","price":"55","quantity":"16","comments":"Delivery on 14th March!","subtotal":880,"taxAmount":106.04,"FinalPrice":"986.04"}
