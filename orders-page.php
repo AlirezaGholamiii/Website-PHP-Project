@@ -4,6 +4,7 @@
 #2021-03-08      Alireza Gholami     table created(HTML/PHP/CSS) / Read from file tested/
 #2021-03-12      Alireza Gholami     adding Error handeler
 #2021-03-13      Alireza Gholami     add comments/ read data logic changed/ add change color for subTotal
+#2021-04-26      Alireza Gholami     HTTPS function 
 
     
     #declere constant to accsess the files and folders
@@ -18,6 +19,9 @@
     #import the php commin function file
     require_once (FILE_PHP_FUNCTION);
 
+    #use created function to force user to enter with HTTPS
+    enterHTTPS();
+        
     #creating Error and excepthion handeler to avoidng display server side problems to end users.
     set_error_handler("manageError");
     set_exception_handler("manageExceptions");

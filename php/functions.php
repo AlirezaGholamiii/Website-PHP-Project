@@ -4,6 +4,7 @@
 #2021-03-04      Alireza Gholami     Create function Header/footer/logo/navigation
 #2021-03-12      Alireza Gholami     Create function manageError/manageExceptions/get_browser_name
 #2021-03-13      Alireza Gholami     add some comments/ add icon to browser tab / add log file and save data
+#2021-04-26      Alireza Gholami     HTTPS function 
 
 
 #declare global variable and constants
@@ -195,5 +196,16 @@ function get_browser_name($user_agent)
     elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
    
     return 'Other';
+}
+
+#create a function to force user to enter by HTTPS protocol 
+function enterHTTPS()
+{
+    #to force the user to use https protocol
+    if( !isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
+    {
+        header('Location: https://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+        exit();
+    }
 }
 

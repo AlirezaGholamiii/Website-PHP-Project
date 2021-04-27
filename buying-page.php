@@ -5,6 +5,7 @@
 #2021-03-08      Alireza Gholami     Debuging the round number of tax and grand total
 #2021-03-12      Alireza Gholami     adding Error handeler
 #2021-03-13      Alireza Gholami     change the array for purchase file(add key)/ add condition for save data in purchase file / add some comments
+#2021-04-26      Alireza Gholami     HTTPS function 
 
     
     #declere constant
@@ -17,6 +18,9 @@
     #import the php commin function file
     require_once (FILE_PHP_FUNCTION);
     
+    #use created function to force user to enter with HTTPS
+    enterHTTPS();
+        
     #creating Error and excepthion handeler to avoidng display server side problems to end users.
     set_error_handler("manageError");
     set_exception_handler("manageExceptions"); 
@@ -101,7 +105,7 @@
         
         
         
-        #check the First name is emty
+        #check the First name is empty
         $fname = htmlspecialchars(trim($_POST["fname"]));
         #if its empty then show message
         if($fname == "")

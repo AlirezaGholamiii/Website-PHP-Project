@@ -5,6 +5,7 @@
         #2021-03-05      Alireza Gholami     adding Ad part/site description/adding css for all new part
         #2021-03-06      Alireza Gholami     adding some comments
         #2021-03-12      Alireza Gholami     adding Error handeler
+        #2021-04-26      Alireza Gholami     HTTPS function 
         
         
         
@@ -24,6 +25,9 @@
         #import the php commin function file
         require_once (FILE_PHP_FUNCTION);
 
+        #use created function to force user to enter with HTTPS
+        enterHTTPS();
+        
         #creating Error and excepthion handeler to avoidng display server side problems to end users.
         set_error_handler("manageError");
         set_exception_handler("manageExceptions");
