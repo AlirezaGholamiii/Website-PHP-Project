@@ -45,6 +45,7 @@
         $Advertising = array(FILE_Ad1_FUNCTION, FILE_Ad2_FUNCTION, FILE_Ad3_FUNCTION,FILE_Ad4_FUNCTION,FILE_Ad5_FUNCTION);
         #Create a variable to get advertising array and show it randomly
         $randomImage = $Advertising[array_rand($Advertising)]; 
+        CreateLoginPage();
         ?>
         
         <!-- This is a short description of the website -->

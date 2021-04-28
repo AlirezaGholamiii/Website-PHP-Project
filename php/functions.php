@@ -23,8 +23,11 @@ define("BUYING_PAGE_PATH", "buying-page.php");
 define("FOLDER_LOG" , 'log/');
 define("FILE_LOG", FOLDER_LOG . 'WebsiteLog.txt');
 
+
+require_once 'objects/customer.php';
+
 #create a variable to turn off and on the developer mode
-$debug = false;
+$debug = true;
 
 
 /////////////////////////////// ALL FUNCTIONS ///////////////////////////////////////
@@ -154,6 +157,7 @@ function manageError($errorNumber, $errorString, $errorFile, $errorLine)
 #create a function to handele all the exceptions
 function manageExceptions($error)
 {
+    global $debug;
     #generic message for end-user
     ?><h1 class="top-message"> An Exception occured on the website. Please consult the log for more details.</h1><?php
     #if we were in developer mode then go inside if.
@@ -207,5 +211,162 @@ function enterHTTPS()
         header('Location: https://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
         exit();
     }
+}
+
+
+
+
+#create a function to create login page
+function CreateLoginPage()
+{
+    $customer = new customer();
+    global $user;
+    global $pass;
+    
+    ?>
+
+            <div class="container">
+            <form action="index.php" method="post">
+                <!-- First text section for ACCOUNT -->
+                <h3 class="AccountTitle">ACCOUNT LOGIN</h3>
+                <hr class="hr-form">
+
+                </span><br>
+                <!-- First text section for username -->
+                <label class="lbl">USERNAME</label><span class="star">*</span><br>
+                <input type="text" name="username"  placeholder="Your user..." value="<?php echo $user ?>"><br>
+                <span class="error">
+                    <?php echo $customer->setUserName($user) ?>
+                </span><br>
+                
+                <!-- First text section for PASSWORD -->
+                <label class="lbl">PASSWORD</label><span class="star">*</span><br>
+                <input type="text" name="password"  placeholder="Your pass..." value="<?php echo $pass ?>"><br>
+                <span class="error">
+                    <?php echo $customer->setPassword($pass) ?>
+                </span><br>
+                
+                
+               <!-- submit button to save data into text file --> 
+              <input type="submit" value="L O G I N" name="login">
+              
+              <div class="need">
+                <label class="needAcc"> Need a user account ? </label>
+              </div>
+              <div class="cheatSheet">  
+                <a class="BtncheatSheet" href="index.php" >R e g i s t e r</a>
+            </div>
+            </form>
+        </div>
+    <?php
+    
+    if(isset($_POST["login"]))
+    {
+        //$encripted_pass = password_hash($pass, PASSWORD_DEFAULT);
+        //if(password_verify($pass, $encripted_pass))
+        //{   
+        //}
+        $customer= new customer();
+        
+        //$customer->login($_POST["username"], $_POST["password"]);
+            //echo "Hello ".$customer->getLastName();
+        
+        echo"bye";
+//        $customer->login($user, $pass);
+//        echo "You login with...";
+        
+    }
+    else
+    {
+        echo "You need to loggin";
+    }
+}
+
+//function userLogin()
+//{
+//    if(isset($_POST["login"]))
+//    {
+//        global $connection;
+//
+//        #with procedure
+//        $SQLQuery = "CALL `login`(:user, :pwd)";
+//        
+//        #prepare the sql query and binf the parameters
+//        $PDOStatement = $connection->prepare($SQLQuery);
+//
+//        #bind parameters to variables
+//        $PDOStatement->bindParam(":user", $_POST["username"]);
+//        $PDOStatement->bindParam(":pwd", $_POST["password"]);
+//
+//        #create a PDO statement object
+//        $PDOStatement->execute();
+//
+//        #foreach($PDOstatement as $row)
+//        while ($row = $PDOStatement->fetch()) # ->fetch(PDO::FETCH_ASSOC)
+//        {
+//            echo "<br> welcome " . $row["customer_fname"];
+//
+//        }
+//
+//        #tell PHP you are done with th eprevious query
+//        $PDOStatement->closeCursor();
+//        $PDOStatement = null;
+//
+//        $connection = null; #close the connection when you are done with all your queries
+//    }
+//}
+
+
+
+session_start();
+
+function createCookie()
+{
+    if(isset($_POST["login"]))
+    {
+        #because we dont use HTTPS we have to use :
+        #in session mode we dont need expirition date
+        $_SESSION["firstname"] = htmlspecialchars($_POST["firstname"]);
+        
+        #reload the page...
+        header('Location: index.php');
+        exit();
+        
+    }
+}
+
+function readCookie()
+{
+    #use the golobal variable named firstName"
+    global $firstname;
+    //if(isset($_COOKIE["firstname"]))
+    if(isset($_SESSION["firstname"]))
+    {
+        $firstname = $_SESSION["firstname"];
+        
+        #I am ACtive on website
+        #in session mode we dont need expirition date
+//        setcookie("firstname", $_COOKIE["firstname"]  , time() + 10,
+//                "",   "",    false,  true);
+                #path #domin #secure #http
+    }
+    else
+    {
+        $firstname = "";
+    }
+}
+
+function deleteCookie()
+{
+    #use - sign to make the cookie already expired (in the past) 
+        #set cookie and specify a time to expire
+//        setcookie("firstname", "", time() - 60 * 60 * 24);
+    #to remove the sessition
+    session_destroy();
+    
+        #reload the page...
+        header('Location: index.php');
+        exit();
+
 }
 

@@ -39,8 +39,8 @@ const PASSWORD_MAX_LENGTH = 255;
     
     
     //create a function constractor to recive prameters
-    function __construct($newCustomerId="",$newFirstname,$newLastname,$newCity, $newProvince,
-            $newAddress , $newPostalCode,$newUsername, $newPassword, $newDate="", $newTime="")
+    function __construct($newCustomerId="",$newFirstname="",$newLastname="",$newCity="", $newProvince="",
+            $newAddress="" , $newPostalCode="",$newUsername="", $newPassword="", $newDate="", $newTime="")
     {
         
         #this code id called everytime "= new customer()" is called
@@ -65,7 +65,7 @@ const PASSWORD_MAX_LENGTH = 255;
         
         
          #check if password is not empty
-        if($newpassword<>""){
+        if($newPassword<>""){
             $this->setPassword($newPassword);
         }
         
@@ -316,7 +316,7 @@ const PASSWORD_MAX_LENGTH = 255;
         {
             return "Password cannot be empty!";
         }#check if password is long
-        elseif (strlen($newusername)> self::PASSWORD_MAX_LENGTH) {
+        elseif (strlen($newpassword)> self::PASSWORD_MAX_LENGTH) {
             return "Username cannot be more than 255 characters!";
         }#set the password into the database
         else
@@ -418,7 +418,7 @@ const PASSWORD_MAX_LENGTH = 255;
             $sqlQuery ="CALL customers_update(:customer_id, :fname, :lname, :username, :password, :city, :address, :province, :pcode);";
             $PDOStatement = $connection->prepare($sqlQuery);
             # update the customer information
-            $PDOStatement ->bindParam(":customerid",$this->customer_id);
+            $PDOStatement ->bindParam(":customer_id",$this->customer_id);
             $PDOStatement ->bindParam(":fname",$this->fname);
             $PDOStatement ->bindParam(":lname",$this->lname);
             $PDOStatement ->bindParam(":city",$this->city);
@@ -462,8 +462,103 @@ const PASSWORD_MAX_LENGTH = 255;
         }
 
    }
-    
-    
-    
-    
+   
+ 
+//      #create a method for deleting info from database
+//    function login($user, $pwd)
+//    {
+//        #check if you have a primary key(uuid()) and then delete that row
+//        global $connection;
+//        
+//        #with procedure
+//                $SQLQuery = "CALL `login`(:user, :pwd)";
+//                
+//                #prepare the sql query and binf the parameters
+//                $PDOStatement = $connection->prepare($SQLQuery);
+//
+//                #bind parameters to variables
+//                $PDOStatement->bindParam(":user", $user);
+//                $PDOStatement->bindParam(":pwd", $pwd);
+//                
+//                #create a PDO statement object
+//                $PDOStatement->execute();
+//          #foreach($PDOstatement as $row)
+//                # ->fetch(PDO::FETCH_ASSOC)
+//                while ($row = $PDOStatement->fetch()) 
+//                {
+//                    echo "<br> welcome " . $row["customer_fname"];
+//                }
+//        #call your STORED PROCEDURE
+//        #check if the customer exist in the data base
+//        if($this->username == $user)
+//        {
+//            if($this->password == ":pwd")
+//            {
+//                
+//                #foreach($PDOstatement as $row)
+//                # ->fetch(PDO::FETCH_ASSOC)
+//                while ($row = $PDOStatement->fetch()) 
+//                {
+//                    echo "<br> welcome " . $row["customer_fname"];
+//                }
+//                
+//                return true;
+//            }
+//            else
+//            {
+//                echo "This Password does not exist!";
+//                return false;                
+//            }
+//  
+//        }
+//        else
+//        {
+//            echo "This user name does not exist!";
+//            return false;
+//        }
+//   } 
+   
+   
+   
+   function login($Username,$Password)
+   {
+        #check if you have a primary key
+        
+        #if yes, delete that row
+         
+           global $connection;
+        
+           #call your STORED PROCEDURE
+           #check if the customer exist in the data base
+
+           
+        $sqlQuery = "CALL `login`(:Username, :Password);";
+
+        $PDOStatement = $connection->prepare($sqlQuery);
+        $PDOStatement ->bindParam(":Username", $Username);
+        $PDOStatement ->bindParam(":Password",$Password);
+        $PDOStatement ->execute();
+        
+            if($row = $PDOStatement-> fetch())
+            {
+            
+                $this->customer_id= $row["customer_id"];
+                $this->fname= $row["customer_fname"];
+                $this->lname= ["customer_lname"];
+                $this->username= $row["customer_username"];
+                $this->password= $row["customer_pass"];
+                $this->city= $row["customer_city"];
+                $this->province= $row["customer_province"];
+                $this->address= $row["customer_address"];
+                $this->pcode= $row["customer_pcode"];
+                $this->date= $row["customer_date"];
+                $this->time= $row["customer_time"];
+
+                 return true;
+            }
+            
+            return false;
+      
+         
+    }
 }

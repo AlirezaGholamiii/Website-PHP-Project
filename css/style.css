@@ -5,6 +5,7 @@
 2021-03-09      Alireza Gholami     Table design in orders-page
 2021-03-10      Alireza Gholami     Table design in orders-page
 2021-03-13      Alireza Gholami     add css for clases getting by command(url)/ cheat Sheet button
+2021-04-27      Alireza Gholami     add css for login page
 */
 html, body
 {
@@ -399,7 +400,24 @@ td{
   outline: none;
 }
 
+/*///////////////// login page///////////////*/
 .BtncheatSheet:hover {
   background-color: darkred;
   color: white;
+}
+
+.loginLogo{
+    text-align: center;
+}
+
+.needAcc{
+    text-align: center;
+}
+
+.need{
+    text-align: center;
+}
+
+.AccountTitle{
+    color:firebrick;
 }
