@@ -77,7 +77,8 @@
         </div >
     <?php
 
-  
+    #call the login function 
+    CreateLoginPage();
     
     #check if the save button has been clicked
     if(isset($_POST["save"]))

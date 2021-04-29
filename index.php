@@ -24,7 +24,7 @@
         
         #import the php commin function file
         require_once (FILE_PHP_FUNCTION);
-
+        global $userSSS;
         #use created function to force user to enter with HTTPS
         enterHTTPS();
         
@@ -39,13 +39,46 @@
                     CreateLogo();
                     createNavigationMenu();
                 ?>
-            </div >
+            </div >            
         <?php
+        
+            #this blockof code must place before the html code because it works with headers
+            #check if the save button has been clicked
+            session_start();
+            //echo "you need to log in to view this page.";
+            if(readCookie() == "")
+            {
+                echo "you need to log in to view this page.";
+                CreateLoginPage();
+            }
+            else 
+            {
+                $customer = new customer();
+                
+                $userSSS = $_SESSION["user"];
+              
+                $customer->load($userSSS);
+                ?> <h2 class="top-message"> Welcome Back <?php  echo $customer->getFirstName() ." ". $customer->getLastName(). "</h2>";
+                ?> <h2 class="top-message"> Your seesion is: <?php  echo $userSSS . "</h2>";
+                ?>
+                <div class="top-message">
+                    <form  action="index.php" method="post">
+                        <input type="submit" value="L O G O U T" name="logout">
+                    </form>
+                </div>
+            
+             <?php 
+             if(isset($_POST["logout"]))
+             {
+                 deleteCookie();
+             }
+            }
+            
+           
         #Randomize the picture to show(Create an arrary to store all the add)
         $Advertising = array(FILE_Ad1_FUNCTION, FILE_Ad2_FUNCTION, FILE_Ad3_FUNCTION,FILE_Ad4_FUNCTION,FILE_Ad5_FUNCTION);
         #Create a variable to get advertising array and show it randomly
-        $randomImage = $Advertising[array_rand($Advertising)]; 
-        CreateLoginPage();
+        $randomImage = $Advertising[array_rand($Advertising)];  
         ?>
         
         <!-- This is a short description of the website -->

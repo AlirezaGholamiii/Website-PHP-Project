@@ -27,7 +27,7 @@
     set_exception_handler("manageExceptions");
     #call the function to create page header    
     createPageHeder("Orders Page");
-
+    
     ?>
 
         <div class="navigation-menu">
@@ -36,8 +36,13 @@
                 CreateLogo();
                 #call the function to create navigation menu
                 createNavigationMenu();
+                
             ?>
         </div >
+        <?php 
+        #call the login function 
+        CreateLoginPage(); 
+        ?>
             <h2 class="top-message" >SUCCESSFUL TRANSACTIONS.</h2>
         <div class="table">
     <?php

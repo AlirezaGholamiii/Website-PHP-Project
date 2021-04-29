@@ -30,17 +30,17 @@ const PASSWORD_MAX_LENGTH = 255;
     private $address="";
     private $username="";
     private $password="";
-    private $date;
-    private $time;
+    private $date="";
+    private $time="";
     
     
     
-    
+
     
     
     //create a function constractor to recive prameters
-    function __construct($newCustomerId="",$newFirstname="",$newLastname="",$newCity="", $newProvince="",
-            $newAddress="" , $newPostalCode="",$newUsername="", $newPassword="", $newDate="", $newTime="")
+    function __construct($newCustomerId="",$newFirstname="",$newLastname="",$newCity="", $newProvince="",$newAddress="" , $newPostalCode="",
+            $newUsername="", $newPassword="", $newDate="", $newTime="")
     {
         
         #this code id called everytime "= new customer()" is called
@@ -58,23 +58,12 @@ const PASSWORD_MAX_LENGTH = 255;
             $this->setLastname($newLastname);
         }
         
-         #check if username is not empty
-        if($newUsername<>""){
-            $this->setUserName($newUsername);
-        }
-        
-        
-         #check if password is not empty
-        if($newPassword<>""){
-            $this->setPassword($newPassword);
-        }
-        
          #check if city is not empty
         if($newCity<>""){
             $this->setCity($newCity);
         }
-        
-         #check if province is not empty
+
+        #check if province is not empty
         if($newProvince<>""){
             $this->setProvince($newProvince);
         }
@@ -99,6 +88,18 @@ const PASSWORD_MAX_LENGTH = 255;
           if($newTime<>""){
             $this->setTime($newTime);
         }
+        
+                 #check if username is not empty
+        if($newUsername<>""){
+            $this->setUserName($newUsername);
+        }
+        
+        
+         #check if password is not empty
+        if($newPassword<>""){
+            $this->setPassword($newPassword);
+        }
+        
     }
     
 //=================CREATE ALL GETTERS FOR VARIABLES======================= 
@@ -321,7 +322,7 @@ const PASSWORD_MAX_LENGTH = 255;
         }#set the password into the database
         else
         {
-            $this->password = sha1($newpassword);
+            $this->password = $newpassword;
             return"";
         }
     }    
@@ -463,102 +464,49 @@ const PASSWORD_MAX_LENGTH = 255;
 
    }
    
- 
-//      #create a method for deleting info from database
-//    function login($user, $pwd)
-//    {
-//        #check if you have a primary key(uuid()) and then delete that row
-//        global $connection;
-//        
-//        #with procedure
-//                $SQLQuery = "CALL `login`(:user, :pwd)";
-//                
-//                #prepare the sql query and binf the parameters
-//                $PDOStatement = $connection->prepare($SQLQuery);
-//
-//                #bind parameters to variables
-//                $PDOStatement->bindParam(":user", $user);
-//                $PDOStatement->bindParam(":pwd", $pwd);
-//                
-//                #create a PDO statement object
-//                $PDOStatement->execute();
-//          #foreach($PDOstatement as $row)
-//                # ->fetch(PDO::FETCH_ASSOC)
-//                while ($row = $PDOStatement->fetch()) 
-//                {
-//                    echo "<br> welcome " . $row["customer_fname"];
-//                }
-//        #call your STORED PROCEDURE
-//        #check if the customer exist in the data base
-//        if($this->username == $user)
-//        {
-//            if($this->password == ":pwd")
-//            {
-//                
-//                #foreach($PDOstatement as $row)
-//                # ->fetch(PDO::FETCH_ASSOC)
-//                while ($row = $PDOStatement->fetch()) 
-//                {
-//                    echo "<br> welcome " . $row["customer_fname"];
-//                }
-//                
-//                return true;
-//            }
-//            else
-//            {
-//                echo "This Password does not exist!";
-//                return false;                
-//            }
-//  
-//        }
-//        else
-//        {
-//            echo "This user name does not exist!";
-//            return false;
-//        }
-//   } 
+
    
    
    
    function login($Username,$Password)
    {
-        #check if you have a primary key
+        #create a connection
+        global $connection;
         
-        #if yes, delete that row
-         
-           global $connection;
-        
-           #call your STORED PROCEDURE
-           #check if the customer exist in the data base
-
-           
+        #call your STORED PROCEDURE
+        #check if the customer exist in the data base
         $sqlQuery = "CALL `login`(:Username, :Password);";
 
+        #prepare the query 
         $PDOStatement = $connection->prepare($sqlQuery);
+        #check if username and pass find in database
         $PDOStatement ->bindParam(":Username", $Username);
         $PDOStatement ->bindParam(":Password",$Password);
+        #execute the query
         $PDOStatement ->execute();
-        
-            if($row = $PDOStatement-> fetch())
+                
+            #if data find then go for each column and grab it
+            if($row = $PDOStatement->fetch())
             {
-            
+                
+                #set each column value to a specific variable
                 $this->customer_id= $row["customer_id"];
                 $this->fname= $row["customer_fname"];
-                $this->lname= ["customer_lname"];
-                $this->username= $row["customer_username"];
-                $this->password= $row["customer_pass"];
+                $this->lname= $row["customer_lname"];
+                $this->address= $row["customer_address"];
                 $this->city= $row["customer_city"];
                 $this->province= $row["customer_province"];
-                $this->address= $row["customer_address"];
                 $this->pcode= $row["customer_pcode"];
+                $this->username= $row["customer_username"];
+                $this->password= $row["customer_pass"];
                 $this->date= $row["customer_date"];
                 $this->time= $row["customer_time"];
 
-                 return true;
+                #everything goes well so return true
+                return true;
             }
-            
+            #data not found return false
             return false;
-      
-         
+ 
     }
 }
