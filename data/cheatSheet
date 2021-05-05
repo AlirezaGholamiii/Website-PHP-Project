@@ -65,3 +65,96 @@ var_dump(checkdate(2, 3, 2001));			checkdate, validate a gregorian date return r
 $dateArray = getdate()					place the date into an array
 
 It took %s.%F second to loop 10 000 times		to see the time app takes
+
+				/*STEPS TO ENTER MYSQL*/
+
+Enter mysql with cmd:
+
+C:\Users\kasra> c:\xampp\mysql\bin\mysql.exe -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.17-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
+
+MariaDB [(none)]> select @@version;
++-----------------+
+| @@version       |
++-----------------+
+| 10.4.17-MariaDB |
++-----------------+
+1 row in set (0.000 sec)
+
+MariaDB [(none)]>
+
+--------------------------------------------
+make a password for root:
+
+C:\Users\kasra>c:\xampp\mysql\bin\mysqladmin.exe -u root password kasra1377
+
+
+
+			/*STEPS FOR GENERATING HTTPS */
+
+
+To add a new certificate and enter tp https
+
+1- download cygwin from cygwin.com
+2- install it in C:\cygwin64
+3- open cmd
+4- c:\cygwin64\bin\openssl req -x509 -newkey rsa:4096 -days 365 -nodes -keyout kasra.key -out kasra.crt
+5- file should be created in (c:\users\kasra\)
+6- copy the .crt file into c:\xampp\apache\conf\ssl.crt folder
+7- copy the .key file into c:\xampp\apache\conf\ssl.key folder
+8- edit the httpd-ssl.conf file :
+	A)SSLCertificateFileConf/ssl.crt/kasra.crt
+	B)SSLCertificateKeyFileConf/ssl.key/kasra.key
+9- restart Apache
+10-call your website https://localhost/website
+11-reviw certificate info and authorize the certificate
+
+
+----------------------------------------------------------------------------------------------------------
+			cmd output
+
+C:\Users\kasra>c:\cygwin64\bin\openssl req -x509 -newkey rsa:4096 -days 365 -nodes -keyout kasra.key -out kasra.crt
+Generating a RSA private key
+............................++++
+.....................................................................................................................................................................................................................++++
+writing new private key to 'kasra.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:CA
+State or Province Name (full name) []:Quebec
+Locality Name (eg, city) [Default City]:Montreal
+Organization Name (eg, company) [Default Company Ltd]:KS inc.
+Organizational Unit Name (eg, section) []:Kasra Gholami
+Common Name (eg, your name or your server's hostname) []:Alireza Gholami
+Email Address []:Kasragholami47@yahoo.com
+
+C:\Users\kasra>
+
+			/*GENERATE AND SHOW ALL GRANDS FOR SQL USER + SAMPLE*/
+
+SHOW GRANTS FOR website@localhost
+
+GRANT USAGE ON *.* TO `website`@`localhost` IDENTIFIED BY PASSWORD '*A4B6157319038724E3560894F7F932C8886EBFCF'
+GRANT SELECT ON `kasra`.`customer_general_information` TO `website`@`localhost`
+GRANT SELECT ON `kasra`.`customers_fullname` TO `website`@`localhost`
+GRANT SELECT ON `kasra`.`rendevous_inner_join` TO `website`@`localhost`
+GRANT EXECUTE ON PROCEDURE `kasra`.`customers_delete` TO `website`@`localhost`
+GRANT EXECUTE ON PROCEDURE `kasra`.`customers_update` TO `website`@`localhost`
+GRANT EXECUTE ON PROCEDURE `kasra`.`customers_select` TO `website`@`localhost`
+GRANT EXECUTE ON PROCEDURE `kasra`.`customers_insert` TO `website`@`localhost`
+GRANT EXECUTE ON PROCEDURE `kasra`.`costomer_select_one` TO `website`@`localhost`
